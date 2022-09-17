@@ -18,6 +18,22 @@ body {
 }
 
 [class*='__container'] {
-  /* max-width: ; */
+  max-width: 1060px;
+  margin: 0 auto;
   padding: 40px;
+}
+
+.no-focus {
+  -moz-user-focus: none;
+  -webkit-user-focus: none;
+  -ms-user-focus: none;
+  user-select: none;
+  -moz-user-modify: read-only;
+  -webkit-user-modify: read-only;
+  -ms-user-modify: read-only;
+  -webkit-user-modify: read-only;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
