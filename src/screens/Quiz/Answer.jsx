@@ -14,12 +14,13 @@ const Answer = ({ title, onSelectAnswer, correctAnswer, currentAnswer }) => {
         {
           '!border-green-500 !text-green-500': isCorrectAnswer,
           '!border-red-500 !text-red-500': isWrongAnswer,
-          'border-gray-500 text-gray-500 pointer-events-none no-focus': isDisabled,
+          'border-gray-500 !text-gray-500 pointer-events-none no-focus': isDisabled,
         },
       )}
     >
       <span>{title}</span>
       <input
+        disabled={isDisabled}
         className={cn(
           'appearance-none transition-all duration-300 w-6 h-6 bg-transparent text-blue-600 rounded-full border-[3px] border-accent-100',
           {

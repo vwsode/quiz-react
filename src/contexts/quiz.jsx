@@ -15,9 +15,13 @@ const reducer = (state, action) => {
   switch (action.type) {
     case 'CHOOSE_WITH_PAGINATION': {
       const currentQuestionIndex = action.payload;
+      const currentAnswer = state.allUserAnswers[currentQuestionIndex];
+      const disabledButton = state.allUserAnswers[currentQuestionIndex] === '' ? true : false;
       return {
         ...state,
         currentQuestionIndex,
+        currentAnswer,
+        disabledButton,
       };
     }
     case 'SELECT_ANSWER': {
@@ -37,21 +41,21 @@ const reducer = (state, action) => {
       };
     }
     case 'NEXT_QUESTION': {
-      const disabledButton = true;
+      // console.log(action.payload)
       const showResults = state.currentQuestionIndex === state.questions.length - 1;
       const currentQuestionIndex = showResults
-        ? state.currentQuestionIndex
-        : state.currentQuestionIndex + 1;
-      // const allUserAnswers = [...state.allUserAnswers, state.currentAnswer];
-      const allUserAnswers = [
-        ...state.allUserAnswers,
-        (state.allUserAnswers[state.currentQuestionIndex] = state.currentAnswer),
-      ];
+      ? state.currentQuestionIndex
+      : state.currentQuestionIndex + 1;
+      const allUserAnswers = state.allUserAnswers;
+      allUserAnswers[state.currentQuestionIndex] = state.currentAnswer;
+      const currentAnswer = state.allUserAnswers[currentQuestionIndex];
+      const disabledButton = state.allUserAnswers[state.currentQuestionIndex + 1] === '' ? true : false;;
+      
       return {
         ...state,
         currentQuestionIndex,
         showResults,
-        currentAnswer: '',
+        currentAnswer,
         disabledButton,
         allUserAnswers,
       };
